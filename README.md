@@ -75,7 +75,7 @@ Hex Editor adalah tool terminal untuk menganalisis dan mengedit file binary, khu
 
 ```bash
 # 1. Download script
-git clone https://github.com/yourusername/hex-editor.git
+git clone https://github.com/ruyana322/hex-editor.git
 cd hex-editor
 
 # 2. Run setup

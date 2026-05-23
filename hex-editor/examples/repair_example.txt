@@ -1,0 +1,93 @@
+═══════════════════════════════════════════════════════════════
+    EXAMPLE: Repair Corrupted MP4 Video File
+═══════════════════════════════════════════════════════════════
+
+SCENARIO: Anda punya file video.mp4 yang rusak, tidak bisa dibuka
+
+STEP-BY-STEP:
+
+1. Start Tool
+   $ python3 hex_editor_tool.py
+
+2. Main Menu Appears
+   ┌─ MAIN MENU ─────────────────────────────┐
+   [1] 📂 Browse & Select File
+   [2] 🔍 Scan Struktur Video
+   [3] 🔧 Repair Video
+   ...
+   └─────────────────────────────────────────┘
+
+3. Select File [1]
+   Input: 1
+   → File browser dibuka
+   → Navigate ke video.mp4
+   → Select file
+
+4. Scan Struktur [2]
+   Input: 2
+   → Tool scan file structure
+   Output:
+   ───────────────────────
+   File: video.mp4
+   Size: 50.00 MB
+   Format: MP4 (ISOM)
+   
+   Boxes Found:
+     ftyp @ 00000000 (32 B)
+     mdat @ 00000020 (49.99 MB)
+     moov @ 03C00020 (MISSING!)  ← ERROR!
+   
+   Issues Detected:
+     ⚠️  Missing 'moov' box - file may be incomplete
+
+5. Attempt Repair [3]
+   Input: 3
+   → Tool check ffmpeg
+   → Run repair process
+   Output:
+   ───────────────────────
+   🔧 Attempting MP4 repair...
+   Using ffmpeg untuk repair...
+   ✓ Repaired file: video.mp4_repaired.mp4
+
+6. Verify Hasil [2]
+   Input: 1 (select repaired file)
+   Input: 2 (scan lagi)
+   → Check if moov box ada sekarang
+   → Confirm repair successful
+
+7. Check Integrity [6]
+   Input: 6
+   Output:
+   ───────────────────────
+   ✓ No issues detected!
+   File is now playable
+
+8. Export Report [7]
+   Input: 7
+   Output:
+   ───────────────────────
+   ✓ Report generated:
+     video.mp4_report.json
+   → Simpan untuk dokumentasi
+
+9. Done!
+   ✓ Original: video.mp4 (backup automatically)
+   ✓ Repaired: video.mp4_repaired.mp4 (usable)
+   ✓ Backup: video.mp4.backup (original)
+   ✓ Report: video.mp4_report.json
+
+═══════════════════════════════════════════════════════════════
+
+EXPECTED RESULT:
+- video.mp4_repaired.mp4 sekarang bisa dibuka
+- Semua data audio/video intact
+- Ready untuk dipakai
+
+TIPS:
+1. Always keep original file
+2. Test repaired file sebelum delete original
+3. Check report untuk confirmation
+4. ffmpeg must be installed (pkg install ffmpeg)
+
+═══════════════════════════════════════════════════════════════

@@ -1,0 +1,93 @@
+HEX EDITOR USAGE EXAMPLES
+═════════════════════════════════════════════════════════════
+
+EXAMPLE 1: Search untuk Magic Bytes
+─────────────────────────────────────
+
+Tujuan: Cari semua JPEG headers dalam file
+
+Step 1: [8] Edit Write File Biner
+Step 2: [1] Search Hex/String
+
+Search Term: FF D8 FF
+(This is JPEG magic bytes in hex)
+
+Result:
+  Found at offsets:
+  1. 0x00000000
+  2. 0x00045620
+  3. 0x000A1200
+
+Action: Use offsets ini untuk navigate ke JPEG data
+
+═════════════════════════════════════════════════════════════
+
+EXAMPLE 2: Find Specific String
+─────────────────────────────────
+
+Tujuan: Cari copyright text dalam file
+
+Step 1: [8] Edit hex editor
+Step 2: [1] Search
+
+Search Term: copyright
+(Automatic convert ke ASCII bytes)
+
+Result: Found di offset 0x00012345
+
+═════════════════════════════════════════════════════════════
+
+EXAMPLE 3: Edit Bytes pada Specific Offset
+────────────────────────────────────────────
+
+Tujuan: Modify 4 bytes pada offset 0x100
+
+Step 1: [8] Edit
+Step 2: [2] Write Bytes
+
+Offset: 100
+Data: FF FF FF FF
+
+Result: ✓ Written 4 bytes at offset 00000100
+
+═════════════════════════════════════════════════════════════
+
+EXAMPLE 4: Batch Search Pattern
+──────────────────────────────────
+
+Tujuan: Find all MP4 atoms (ftyp, moov, mdat)
+
+Search 1: ftyp
+Search 2: moov
+Search 3: mdat
+
+Results: Get all atom locations dalam file
+
+═════════════════════════════════════════════════════════════
+
+HEX REFERENCE QUICK
+
+Common Magic Bytes:
+  FF D8 FF E0 = JPEG
+  89 50 4E 47 = PNG
+  FF FB = MP3
+  00 00 00 18 66 74 79 70 = MP4 (ftyp box)
+  49 44 33 = MP3 (ID3 tag)
+  1A 45 DF A3 = MKV/WebM (EBML)
+
+Common ASCII in Hex:
+  ftyp = 66 74 79 70
+  moov = 6D 6F 6F 76
+  mdat = 6D 64 61 74
+  free = 66 72 65 65
+
+═════════════════════════════════════════════════════════════
+
+TIPS:
+1. Always backup sebelum write!
+2. Understand file format before editing
+3. Use search untuk find patterns
+4. Verify changes dengan save & re-scan
+5. Export report untuk dokumentasi
+
+═════════════════════════════════════════════════════════════
